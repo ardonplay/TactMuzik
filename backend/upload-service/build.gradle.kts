@@ -21,15 +21,16 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://www.dcm4che.org/maven2/")
+        name = "dcm4che repository"
+    }
 }
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.apache.tika:tika-core:2.9.2")
-    implementation("org.apache.tika:tika-parsers:2.9.2")
-    implementation("org.apache.tika:tika-parser-audiovideo-module:2.9.2")
     implementation("io.minio:minio:8.5.11")
-    implementation("com.devskiller.friendly-id:friendly-id-spring-boot:1.1.0")
+    implementation("org:jaudiotagger:2.0.3")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -26,19 +26,22 @@ public class MinioConfiguration {
     @Value("${minio.secretKey}")
     private String secretKey;
 
-    @Value("${minio.buckets}")
-    private List<String> buckets;
+    @Value("${minio.buckets.trackbucket}")
+    public String trackBucket;
+
+    @Value("${minio.buckets.coverbucket}")
+    public String coverBucket;
 
     @Bean
     public MinioClient minioClient() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
-        MinioClient client =  MinioClient.builder()
+        MinioClient client = MinioClient.builder()
                 .endpoint(endpoint)
                 .credentials(accessKey, secretKey)
                 .build();
 
-        for (String bucket : buckets) {
+        for (String bucket : List.of(trackBucket, coverBucket)) {
             boolean isBucketExist = client.bucketExists(BucketExistsArgs.builder().bucket(bucket).build());
-            if(!isBucketExist) {
+            if (!isBucketExist) {
                 client.makeBucket(MakeBucketArgs.builder().bucket(bucket).build());
             }
         }
