@@ -1,4 +1,4 @@
-package io.github.ardonplay.streamingservice;
+package io.github.ardonplay.tactmuzik.streamingservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

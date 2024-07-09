@@ -4,8 +4,8 @@ plugins {
     id("io.spring.dependency-management") version "1.1.5"
 }
 
-group = "io.github.ardonplay"
-version = "0.0.1-SNAPSHOT"
+group = "io.github.ardonplay.tactmuzik"
+version = "0.0.1"
 
 java {
     toolchain {

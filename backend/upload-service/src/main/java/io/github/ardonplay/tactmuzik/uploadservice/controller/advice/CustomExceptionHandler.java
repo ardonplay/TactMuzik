@@ -2,8 +2,6 @@ package io.github.ardonplay.tactmuzik.uploadservice.controller.advice;
 
 import io.github.ardonplay.tactmuzik.uploadservice.exception.file.UnsupportedFileTypeException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
