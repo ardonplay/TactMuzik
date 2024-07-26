@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.github.ardonplay.tactmuzik.metadata'
+version = "${metadata_version}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(":metadata:metadata-shared"))
+}
+
+test {
+    useJUnitPlatform()
+}

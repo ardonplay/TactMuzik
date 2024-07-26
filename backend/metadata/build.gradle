@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+apply from: "$rootDir/gradle/app-module.gradle"
+
+group = 'io.github.ardonplay.tactmuzik.metadata'
+version = '0.0.1'
+
+ext {
+    metadata_version = version
+}
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}

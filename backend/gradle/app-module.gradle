@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+}
+
+compileJava {
+	options.compilerArgs << '-parameters'
+}
+
+dependencies {
+	compileOnly "org.projectlombok:lombok"
+	testCompileOnly "org.projectlombok:lombok"
+
+	annotationProcessor "org.projectlombok:lombok"
+
+	implementation ("org.springframework:spring-context")
+
+	testImplementation platform('org.junit:junit-bom:5.10.0')
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+
+apply plugin: "io.spring.dependency-management"
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
+	}
+}

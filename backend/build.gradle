@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id "org.springframework.boot" version "3.3.2"
+}
+
+ext {
+    springBootVersion = '3.3.2'
+    version = "0.0.1"
+}
+
+apply from: "$rootDir/gradle/app-module.gradle"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation(project(":uploader:uploader-api-adapter-spring-webmvc"))
+    implementation(project(":uploader:uploader-core"))
+    implementation(project(":uploader:uploader-spi-adapter-minio"))
+
+    implementation(project(":metadata:metadata-api-adapter-spring-webmvc"))
+    implementation(project(":metadata:metadata-core"))
+    implementation(project(":metadata:metadata-spi-adapter-jpa"))
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+apply from: "$rootDir/gradle/app-module.gradle"
+
+group = 'io.github.ardonplay.tactmuzik.uploader'
+version = "$version"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation(project(":uploader:uploader-api-adapter-spring-webmvc"))
+    implementation(project(":uploader:uploader-core"))
+    implementation(project(":uploader:uploader-shared"))
+    implementation(project(":uploader:uploader-spi-adapter-minio"))
+}
+
+test {
+    useJUnitPlatform()
+}

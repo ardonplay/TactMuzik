@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+apply from: "$rootDir/gradle/app-module.gradle"
+
+group = 'io.github.ardonplay.tactmuzik.uploader'
+version = 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(":uploader:uploader-shared"))
+    implementation(project(":uploader:uploader-spi"))
+    implementation(project(":uploader:uploader-api"))
+    implementation("org:jaudiotagger:2.0.3")
+}
+
+test {
+    useJUnitPlatform()
+}

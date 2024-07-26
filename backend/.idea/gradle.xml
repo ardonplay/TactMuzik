@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/metadata" />
+            <option value="$PROJECT_DIR$/metadata/metadata-api" />
+            <option value="$PROJECT_DIR$/metadata/metadata-api-adapter-spring-webmvc" />
+            <option value="$PROJECT_DIR$/metadata/metadata-core" />
+            <option value="$PROJECT_DIR$/metadata/metadata-shared" />
+            <option value="$PROJECT_DIR$/metadata/metadata-spi" />
+            <option value="$PROJECT_DIR$/metadata/metadata-spi-adapter-jpa" />
+            <option value="$PROJECT_DIR$/uploader" />
+            <option value="$PROJECT_DIR$/uploader/uploader-api" />
+            <option value="$PROJECT_DIR$/uploader/uploader-api-adapter-spring-webmvc" />
+            <option value="$PROJECT_DIR$/uploader/uploader-core" />
+            <option value="$PROJECT_DIR$/uploader/uploader-microservice" />
+            <option value="$PROJECT_DIR$/uploader/uploader-shared" />
+            <option value="$PROJECT_DIR$/uploader/uploader-spi" />
+            <option value="$PROJECT_DIR$/uploader/uploader-spi-adapter-minio" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

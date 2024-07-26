@@ -1,0 +1,10 @@
+minio:
+  endpoint: http://127.0.0.1:9000
+  secretKey: minioadmin
+  accessKey: minioadmin
+
+uploader:
+  tracks:
+    location: track
+  covers:
+    location: cover
