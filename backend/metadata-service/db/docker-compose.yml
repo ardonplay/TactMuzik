@@ -1,6 +1,6 @@
 services:
   metadata-db:
-    image: postgres:15.3
+    image: postgres:16.4
     container_name: metadata_db
     ports:
       - 5432:5432

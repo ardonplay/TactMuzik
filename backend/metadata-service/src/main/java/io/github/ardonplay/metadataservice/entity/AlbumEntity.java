@@ -12,18 +12,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -34,6 +32,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class AlbumEntity {
+
   @Id
   @Column(name = "id")
   @GeneratedValue
@@ -48,19 +47,32 @@ public class AlbumEntity {
   @Column(name = "release_date")
   private Date releaseDate;
 
-  @ManyToMany(mappedBy = "albums", fetch = FetchType.LAZY)
+  @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH})
+  @JoinTable(
+      name = "album_track",
+      joinColumns = @JoinColumn(name = "album_id"),
+      inverseJoinColumns = @JoinColumn(name = "track_id")
+  )
   private Set<TrackEntity> tracks = new HashSet<>();
 
-  @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+  @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH})
   @JoinTable(
       name = "album_artist",
-      joinColumns = { @JoinColumn(name = "album_id") },
-      inverseJoinColumns = { @JoinColumn(name = "artist_id") }
+      joinColumns = {@JoinColumn(name = "album_id")},
+      inverseJoinColumns = {@JoinColumn(name = "artist_id")}
   )
   private Set<ArtistEntity> artists = new HashSet<>();
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private GenreEntity genre;
+  @OneToMany(fetch = FetchType.LAZY,cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH})
+  @JoinTable(
+      name = "album_genre",
+      joinColumns = {@JoinColumn(name = "album_id")},
+      inverseJoinColumns = {@JoinColumn(name = "genre_id")}
+  )
+  private List<GenreEntity> genres;
 
   @Override
   public boolean equals(Object o) {
@@ -73,11 +85,12 @@ public class AlbumEntity {
     AlbumEntity that = (AlbumEntity) o;
     return Objects.equals(id, that.id) && type == that.type && Objects.equals(
         title, that.title) && Objects.equals(releaseDate, that.releaseDate)
-        && Objects.equals(genre, that.genre);
+        && Objects.equals(tracks, that.tracks) && Objects.equals(artists,
+        that.artists) && Objects.equals(genres, that.genres);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, title, releaseDate, genre);
+    return Objects.hash(id, type, title, releaseDate, tracks, artists, genres);
   }
 }

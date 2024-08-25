@@ -1,7 +1,9 @@
 package io.github.ardonplay.metadataservice.dto;
 
 import java.util.List;
+import java.util.UUID;
 
-public record TrackMetadataDtoOut(String id, String title, Long duration, List<ArtistMetadataDtoOut> artists, String s3Path, String s3CoverPath) {
+public record TrackMetadataDtoOut(UUID id, String title, Long duration, String s3Path,
+                                  String s3CoverPath) {
 
 }

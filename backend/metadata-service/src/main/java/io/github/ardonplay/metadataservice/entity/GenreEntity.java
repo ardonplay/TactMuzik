@@ -31,30 +31,4 @@ public class GenreEntity {
   private int id;
 
   private String name;
-
-  @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
-  private Set<ArtistEntity> artists = new HashSet<>();
-
-  @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
-  private Set<TrackEntity> tracks = new HashSet<>();
-
-  @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
-  private Set<AlbumEntity> albums = new HashSet<>();
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    GenreEntity that = (GenreEntity) o;
-    return id == that.id && Objects.equals(name, that.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name);
-  }
 }

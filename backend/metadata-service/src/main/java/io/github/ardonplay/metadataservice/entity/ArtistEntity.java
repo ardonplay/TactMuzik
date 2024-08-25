@@ -1,21 +1,12 @@
 package io.github.ardonplay.metadataservice.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -26,9 +17,8 @@ import lombok.Setter;
 @Table(name = "artists")
 @Getter
 @Setter
-@AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class ArtistEntity {
 
   @Id
@@ -38,17 +28,8 @@ public class ArtistEntity {
   private UUID id;
 
   @NonNull
+  @Column(name = "name")
   private String name;
-
-  @NonNull
-  @ManyToOne(fetch = FetchType.LAZY)
-  private GenreEntity genre;
-
-  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "artists", fetch = FetchType.LAZY)
-  private Set<TrackEntity> tracks = new HashSet<>();
-
-  @ManyToMany(mappedBy = "artists")
-  private Set<AlbumEntity> albums = new HashSet<>();
 
   @Override
   public boolean equals(Object o) {
@@ -59,12 +40,11 @@ public class ArtistEntity {
       return false;
     }
     ArtistEntity that = (ArtistEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(name, that.name)
-        && Objects.equals(genre, that.genre);
+    return Objects.equals(id, that.id) && Objects.equals(name, that.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, genre);
+    return Objects.hash(id, name);
   }
 }

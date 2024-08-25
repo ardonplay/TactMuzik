@@ -1,4 +1,6 @@
 package io.github.ardonplay.metadataservice.dto;
 
-public record ArtistMetadataDtoOut(String id, String name, String genre) {
+import java.util.UUID;
+
+public record ArtistMetadataDtoOut(UUID id, String name) {
 }
